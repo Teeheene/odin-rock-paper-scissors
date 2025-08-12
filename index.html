@@ -152,7 +152,7 @@
 					humanScoreDoc.textContent = `${humanScore}`;
 					computerScoreDoc.textContent = `${computerScore}`;
 
-					if(roundCount == 5)
+					if(humanScore == 5 || computerScore == 5)
 					{
 						if(computerScore > humanScore)
 							menuResult.textContent = `Computer Won! [${computerScore}-${humanScore}]`;
