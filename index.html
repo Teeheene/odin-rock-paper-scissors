@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="en"> 
+	<head>
+		<title>Rock Paper Scissors</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="bannercontainer">
+			<div class="banner">
+				ROCK PAPER SCISSORS
+			</div>
+		</div>
+
+		<div class="gamecontainer">
+			<div class="game">
+				<div class="round"></div>
+				<div class="playerscontainer">
+					<div class="player1container">
+						<img class="user-img human">
+						<div class="name">You</div>
+						<div class="score"></div>
+					</div>
+					<div class="player2container">
+						<img class="user-img computer">
+						<div class="name">Computer</div>
+						<div class="score"></div>
+					</div>
+				</div>
+				<div class="score"></div>
+				<div class="choices">
+					<button class="choice" id="rock">ROCK</button>
+					<button class="choice" id="paper">PAPER</button>
+					<button class="choice" id="scissors">SCISSORS</button>
+				</div>
+			</div>
+			<div class="menucontainer">
+				<div class="result"></div>
+				<button id="play">PLAY</button>
+			</div>
+		</div>
+
+		<script>
+			const menuResult = document.querySelector(".result");
+			const round = document.querySelector(".round");
+			const human = document.querySelector(".human");
+			const computer = document.querySelector(".computer");
+			const humanScoreDoc = document.querySelector(".player1container .score");
+			const computerScoreDoc = document.querySelector(".player2container .score");
+			const btnRock = document.querySelector("#rock");
+			const btnPaper = document.querySelector("#paper");
+			const btnScissors = document.querySelector("#scissors");
+			const btnPlay = document.querySelector("#play");
+			const choice = ["rock","paper","scissors"];
+
+			const game = document.querySelectorAll(".game");
+			
+			//initialization
+			round.textContent = "";
+		
+			function getComputerChoice() {
+				const chosen = choice[Math.floor(Math.random() * 3)];
+
+				if(chosen == 'rock')
+					computer.src = "assets/rockR.svg";
+				else if(chosen == 'paper')
+					computer.src = "assets/paperR.svg";
+				else if(chosen == 'scissors')
+					computer.src = "assets/scissorsR.svg";
+
+				return chosen;
+			}
+			
+			/*
+			//CONSOLE ONLY IMPLEMENTATION OF GET HUMAN CHOICE (for the exercise)
+			function getHumanChoice() {
+				let humanChoice = prompt("Enter choice: ").toLowerCase();
+				
+				//check
+				for(let i = 0; i < 3; i++) {
+					if(choice[i] == humanChoice) 
+						return humanChoice;
+				}
+				console.log("wrong input!");
+			}
+			*/
+
+			function menuScreen() {
+				game.forEach(el => {
+					el.style.display = "none";
+				});
+
+				btnPlay.style.display = "flex";
+				menuResult.style.display = "flex";
+			}
+			btnPlay.addEventListener("click", () => {
+				playGame();
+			})		
+
+			function playGame() {
+				game.forEach(el => {
+					el.style.display = "flex";
+				})
+				btnPlay.style.display = "none";
+				menuResult.style.display = "none";
+
+				round.textContent = "Round 0";
+				humanScoreDoc.textContent = "0";
+				computerScoreDoc.textContent = "0";
+				human.src = "";
+				computer.src="";
+
+				let humanScore = 0; 
+				let computerScore = 0;
+				let roundCount = 0;
+
+				let computerSelection;
+				let humanSelection;
+
+				function playRound(humanChoice, computerChoice) {
+					//tie condition
+					if(humanChoice == computerChoice)
+						return "tie";
+
+					//winning conditions (human)
+					if(humanChoice == "rock" && computerChoice == "scissors" ||
+						humanChoice == "scissors" && computerChoice == "paper" ||
+						humanChoice == "paper" && computerChoice == "rock") {
+						return "human";
+					}
+
+					//losing conditions 
+					return "computer";
+				}
+				
+				console.log(roundCount);
+				let result = (result) => {
+					if(result == "tie")
+						console.log("You tied!");
+					else if(result == "human") {
+						console.log(`You won! ${humanSelection} beats ${computerSelection}`);
+						humanScore += 1;
+					}
+					else if(result == "computer") {
+						console.log(`The computer won! ${computerSelection} beats ${humanSelection}`);
+						computerScore += 1;
+					}
+
+					roundCount++;
+					round.textContent = `Round ${roundCount}`;
+					humanScoreDoc.textContent = `${humanScore}`;
+					computerScoreDoc.textContent = `${computerScore}`;
+
+					if(roundCount == 5)
+					{
+						if(computerScore > humanScore)
+							menuResult.textContent = `Computer Won! [${computerScore}-${humanScore}]`;
+						else if(humanScore > computerScore)
+							menuResult.textContent = `You Won! [${humanScore}-${computerScore}]`;
+						else
+							menuResult.textContent = `Tied! [${humanScore}-${computerScore}]`
+
+						btnPlay.textContent = "Play Again?";
+
+						roundCount = 0;
+						
+						menuScreen();
+					}
+				}
+			
+				//action listeners
+				btnRock.addEventListener("click", () => {
+					humanSelection = choice[0];
+					computerSelection = getComputerChoice();
+					result(playRound(humanSelection, computerSelection));
+					human.src = "assets/rockL.svg";
+				});
+				btnPaper.addEventListener("click", () => {
+					humanSelection = choice[1];
+					computerSelection = getComputerChoice();
+					result(playRound(humanSelection, computerSelection));
+					human.src = "assets/paperL.svg";
+				});
+				btnScissors.addEventListener("click", () => {
+					humanSelection = choice[2];
+					computerSelection = getComputerChoice();
+					result(playRound(humanSelection, computerSelection));
+					human.src = "assets/scissorsL.svg";
+				});
+			}
+			
+			menuScreen();
+		</script>
+	</body>
+</html>

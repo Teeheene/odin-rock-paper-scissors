@@ -1,0 +1,87 @@
+.bannercontainer {
+	display:flex;
+	justify-content: center;
+	font-size: 60px;
+	font-weight: bold;
+	margin-top: 40px;
+}
+
+.banner {
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.game {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.round {
+	margin-top: 30px;	
+	font-size: 50px;
+}
+
+.human {
+	width: 450px;
+}
+
+.computer {
+	width: 450px;
+}
+
+.playerscontainer {
+	display: flex;
+	width: 100vw;
+	justify-content: space-around;
+}
+
+.player2container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 30px;
+}
+
+.player1container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 30px;
+}
+
+.menucontainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 30px;
+}
+
+#play {
+	font-size: 30px;
+}
+
+.result {
+	margin-bottom: 30px;
+	font-size: 45px;
+}
+
+.choices {
+	display: flex;
+	margin-top: 30px;
+	gap: 30px;
+}
+
+.choice {
+	padding: 50px 0px;
+	font-size: 20px;
+	border-radius: 20px;
+	background-color: #d9d9d9;
+	outline: none;
+	width: 140px;
+}
+
+button.choice:hover {
+	border-radius: 25px;
+	background-color: #bfbfbf; 
+}
