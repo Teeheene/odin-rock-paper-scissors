@@ -27,13 +27,13 @@
 .human, .computer {
 	display: flex;
 	flex-direction: column;
-	width: 200px;
+	width: 250px;
 }
 
 /*play*/
 .play {
 	margin: 20px;
-	padding: 5px 183px;
+	padding: 5px 234px;
 	font-size: 24px;
 	font-weight: bold;
 }

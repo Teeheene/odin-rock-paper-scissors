@@ -17,7 +17,7 @@ function getComputerChoice() {
 }
 
 //getHumanChoice
-let getHumanChoice = "rock"; //default value
+let getHumanChoice = ""; //default value
 const btnChoices = document.querySelectorAll(".human .choices");
 
 btnChoices.forEach((btn,index) => {
@@ -45,8 +45,8 @@ function playGame() {
 			else 
 				results.textContent += `You lost with a score of ${humanScore} to ${computerScore}`;
 			
-			btnPlay.textContent = "Retry?";
-			btnPlay.style.padding = "5px 171px";
+			btnPlay.textContent = "Play Again?";
+			btnPlay.style.padding = "5px 190px";
 
 			return 1;
 		}
@@ -84,10 +84,14 @@ function playGame() {
 	btnPlay.addEventListener("click", () => {
 		let result = checkBestOfFive();
 		
-		if(!result) {
+		if(getHumanChoice == "") {
+			let results = document.querySelector(".results");
+			results.textContent = "Please choose rock, paper or scisssors!";
+		} 
+		else if(!result) {
 			playRound(getHumanChoice, getComputerChoice());
 			btnPlay.textContent = "Play";
-			btnPlay.style.padding = "5px 183px";
+			btnPlay.style.padding = "5px 234px";
 		}
 		else
 			restartGame();
