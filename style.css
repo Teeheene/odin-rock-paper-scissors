@@ -1,0 +1,51 @@
+
+/*center alignment for all*/
+#container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	margin: 0;
+	padding: 0;
+}
+
+.title, .button-choices, .play-round, .results{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+/*button styling*/
+.highlight {
+	background-color: darkgray;
+}
+.choices {
+	font-size: 40px;
+}
+
+.human, .computer {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+}
+
+/*play*/
+.play {
+	margin: 20px;
+	padding: 5px 183px;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/*results*/
+.results {
+	font-size: 20px;
+}
+
+/*text styling*/
+h3 {
+	font-size: 25px;
+	margin: 0;
+	padding: 0;
+}
